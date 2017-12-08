@@ -14,9 +14,9 @@
     </div>
     <div class="main">
         <h3 class="big-title">添加任务：</h3>
-        <input 
-            placeholder="例如：吃饭睡觉打豆豆；    提示：+回车即可添加任务" 
-            class="task-input" 
+        <input
+            placeholder="例如：吃饭睡觉打豆豆；    提示：+回车即可添加任务"
+            class="task-input"
             type="text"
             @keyup.enter = "addToDo"
             v-model = "todo"
@@ -37,21 +37,18 @@
                 <li class="todo" :class="{completed : item.isChecked , editing : item === edtorToDos}" v-for="item in list">
                     <div class="view">
                         <input class="toggle" type="checkbox" v-model = "item.isChecked"/>
-                        <label @dblclick="edtorToDo(item)">{{item.title}}</label> 
+                        <label @dblclick="edtorToDo(item)">{{item.title}}</label>
                         <button class="destroy" @click="deleteToDo(item)"></button>
-                        <input 
-                            v-focus = "edtorToDos === item" 
-                            type="text" 
-                            name="" 
-                            class="edit" 
-                            v-model="item.title"
-                            @blur="editedToDo(s)"
-                        >
                     </div>
-                    <input 
-                        class="edit" 
-                        type="text" 
-                    />
+                    <input
+                        v-focus = "edtorToDos === item"
+                        type="text"
+                        name=""
+                        class="edit"
+                        v-model="item.title"
+                        @blur="editedToDo(item)"
+                        @keyup.13="editedToDo(item)"
+                    >
                 </li>
             </ul>
         </div>

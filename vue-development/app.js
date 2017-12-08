@@ -16,31 +16,31 @@ new Vue({
 		edtorToDos : '' , //记录正在编辑的数据
 	},
 	methods : {
-		addToDo (ev) {
-			// 事件处理函数指向的是当前的根实例  
+		addToDo (ev) { // 添加
+			// 事件处理函数指向的是当前的根实例
 			this.list.push({
 				title : this.todo,
 				isChecked : false
-			}) 
+			})
 			this.todo = '';
 		},
 
-		deleteToDo (item){ 
-			var index = this.list.indexOf(item); 
+		deleteToDo (item){ //删除
+			var index = this.list.indexOf(item);
 			this.list.splice(index,1)
 		},
 
-		edtorToDo (todo){
+		edtorToDo (todo){ // 编辑
 			this.edtorToDos = todo;
 		},
-		editedToDo (dd){
-			alert(1)
-			//this.edtorToDos = '';
+
+		editedToDo (dd){ //
+			this.edtorToDos = '';
 		}
 	},
 	directives : {
-		"focus" : {
-			update (el , binding){
+		"focus":{
+			update(el,binding){
 				if(binding.value){
 					el.focus()
 				}
