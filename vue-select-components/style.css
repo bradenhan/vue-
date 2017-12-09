@@ -18,7 +18,7 @@ input{
 }
 .warp{
 	width: 348px;
-	padding:100px 76px 50px;
+	padding:100px 10px 50px;
 	margin:50px;
 	background:url(images/select_bg.png) no-repeat;
 	box-shadow:2px 2px 10px #6789ad;
@@ -80,3 +80,9 @@ input{
 	background: #fd635e;
 	cursor: pointer;
 }
+
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr{margin:0; padding:0;}
+ul,ol{list-style:none outside none;}
+.clear{clear:both; display:block; height:0; visibility:hidden; font:0/0 arial;}
+.clearfix:after{content:"."; display: block; height: 0; clear: both; visibility: hidden; font-size:0;}
+.clearfix {*zoom:1;}

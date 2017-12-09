@@ -5,41 +5,61 @@
 	<title>仿select</title>
 	<link rel="stylesheet" type="text/css" href="./style.css">
 	<script type="text/javascript" src="../vue.js"></script>
+	<style media="screen">
+		.item{float: left; width: 480px;}
+	</style>
 </head>
 <body>
-	<div id="app">
-		<h2>自定义的下拉框1</h2>
+	<div id="app" class="clearfix">
+		<div class="item">
+				<h2>自定义的下拉框1</h2>
+				<custom-select btn-value="查询"></custom-select>
+		</div>
 
-		<custom-select></custom-select>
-
-
-		<h2>自定义的下拉框2</h2>
-		<custom-select></custom-select>
+		<div class="item">
+			<h2>自定义的下拉框2</h2>
+			<custom-select btn-value="搜索"></custom-select>
+		</div>
 	</div>
 
 	<script>
+
+		// var obj = {
+		// 	selectShow : false,
+		// }
 		// 注册组件
 		Vue.component("custom-select",{
+			data : function (){
+				return {
+					selectShow : false
+				}
+			},
+			props : ["btnValue"],
 			template : `<section class="warp">
 				<div class="searchIpt clearFix">
 					<div class="clearFix">
-						<input type="text" class="keyWord" value="" />
-						<input type="button" value="GO">
+						<input type="text" class="keyWord" value="" @click="selectShow = !selectShow"/>
+						<input type="button" :value="btnValue">
 						<span></span>
 					</div>
-					<ul class="list">
-						<li>html+css</li>
-						<li>html5+css3</li>
-						<li>javascript</li>
-						<li>angular</li>
-						<li>react</li>
-						<li>vue</li>
-						<li>jquery</li>
-						<li>nodejs</li>
-					</ul>
+					<data-list v-show="selectShow"></data-list>
 				</div>
 			</section>`,
+		})
 
+		Vue.component('data-list',{
+			template : `
+				<ul class="list">
+					<li>html+css</li>
+					<li>html5+css3</li>
+					<li>javascript</li>
+					<li>angular</li>
+					<li>react</li>
+					<li>vue</li>
+					<li>jquery</li>
+					<li>nodejs</li>
+				</ul>
+			`,
 		})
 
 		 var select = new Vue({
