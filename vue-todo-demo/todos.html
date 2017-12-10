@@ -24,9 +24,9 @@
         <ul class="task-count" v-show="list.length">
             <li>{{noCheckeLength}}个任务未完成</li>
             <li class="action">
-                <a class="active" href="#all">所有任务</a>
-                <a href="#undone">未完成的任务</a>
-                <a href="#done">完成的任务</a>
+                <a :class="{active : visibility === 'all'}" href="#all">所有任务</a>
+                <a :class="{active : visibility === 'undone'}"  href="#undone">未完成的任务</a>
+                <a :class="{active : visibility === 'done'}"  href="#done">完成的任务</a>
             </li>
         </ul>
         <h3 class="big-title">任务列表：</h3>
