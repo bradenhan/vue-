@@ -1,5 +1,21 @@
 # vue 实例 知识点归纳
 
+- 列表渲染
+- 事件处理
+- 事件修饰符
+- 条件渲染
+- 动态CSS
+- 自定义指令
+- watch监控数据
+- 数据存储与转换
+  - Window.localStorage
+  - JSON.stringify()
+  - JSON.parse()
+- window.location.hash 值
+- 字符串操作
+  - String.prototype.slice()
+
+
 ### 列表渲染
 
 ![](./images/Jietu20171207-150833.jpg)
@@ -29,7 +45,7 @@
     var vm = new Vue({
       data: {
         a: 1,
-        b: 2,
+        b: 2,Â
         c: 3,
         d: 4
       },
@@ -52,7 +68,7 @@
       }
     })
     vm.a = 2 // => new: 2, old: 1
-    
+
 注意，不应该使用箭头函数来定义 watcher 函数 (例如 searchQuery: newValue => this.updateAutocomplete(newValue))。理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，this.updateAutocomplete 将是 undefined。
 
 
@@ -78,7 +94,7 @@ localStorage 属性允许你访问一个 local Storage 对象。localStorage 与
 JSON.stringify() 方法是将一个JavaScript值(对象或者数组)转换为一个 JSON字符串，如果指定了replacer是一个函数，则可以替换值，或者如果指定了replacer是一个数组，可选的仅包括指定的属性。
 
     JSON.stringify(value[, replacer [, space]])
-    
+
 例子：
 
     JSON.stringify({});                        // '{}'
@@ -109,13 +125,13 @@ JSON.parse() 方法用来解析JSON字符串，构造由字符串描述的JavaSc
     let oldLocation = location;
     location = newLocation;
 
-### 字符串操作 
+### 字符串操作
 
- [String.prototype.slice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/slice) 
- 
+ [String.prototype.slice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/slice)
+
  slice() 方法提取一个字符串的一部分，并返回一新的字符串。
 
- 
+
     str.slice(beginSlice[, endSlice])
 
 使用 slice() 创建一个新的字符串

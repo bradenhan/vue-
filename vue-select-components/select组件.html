@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>仿select</title>
-	<link rel="stylesheet" type="text/css" href="./style.css">
-	<script type="text/javascript" src="../vue.js"></script>
-	<style media="screen">
-		.item{float: left; width: 480px;}
-	</style>
+  <meta charset="UTF-8">
+  <title>仿select</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script type="text/javascript" src="../vue.js"></script>
+  <style media="screen">
+    .item {
+      float: left;
+      width: 480px;
+    }
+  </style>
 </head>
+
 <body>
-	<div id="app" class="clearfix">
-		<div class="item">
-				<h2>自定义的下拉框1</h2>
-				<custom-select btn-value="查询" v-bind:list = "list1"></custom-select>
-		</div>
+  <div id="app" class="clearfix">
+    <div class="item">
+      <h2>自定义的下拉框1</h2>
+      <custom-select btn-value="查询" v-bind:list="list1"></custom-select>
+    </div>
 
-		<div class="item">
-			<h2>自定义的下拉框2</h2>
-			<custom-select btn-value="搜索" v-bind:list = "list2"></custom-select>
-		</div>
-	</div>
+    <div class="item">
+      <h2>自定义的下拉框2</h2>
+      <custom-select btn-value="搜索" v-bind:list="list2"></custom-select>
+    </div>
+  </div>
 
-	<script>
-
-		// var obj = {
-		// 	selectShow : false,
-		// }
-		// 注册组件
-		Vue.component("custom-select",{
-			data : function (){
-				return {
-					selectShow : false,
-					val : ''
-				}
-			},
-			props : ["btnValue","list"],
-			template : `<section class="warp">
+  <script>
+    // var obj = {
+    // 	selectShow : false,
+    // }
+    // 注册组件
+    Vue.component("custom-select", {
+      data: function() {
+        return {
+          selectShow: false,
+          val: ''
+        }
+      },
+      props: ["btnValue", "list"],
+      template: `<section class="warp">
 				<div class="searchIpt clearFix">
 					<div class="clearFix">
 						<input type="text" class="keyWord" @click="selectShow = !selectShow" :value="val"/>
@@ -50,17 +54,17 @@
 					></data-list>
 				</div>
 			</section>`,
-			methods : {
-				changeValueHandel : function(value){
-					this.val = value;
-					this.selectShow = false;
-				}
-			}
-		})
+      methods: {
+        changeValueHandel: function(value) {
+          this.val = value;
+          this.selectShow = false;
+        }
+      }
+    })
 
-		Vue.component('data-list',{
-			props : ["list"],
-			template : `
+    Vue.component('data-list', {
+      props: ["list"],
+      template: `
 				<ul class="list">
 					<li
 						v-for="item of list"
@@ -68,24 +72,25 @@
 					>{{item}}</li>
 				</ul>
 			`,
-			methods : {
-				selectValueHandel : function(item){
-						// 在子组件中有交互
-						// 告知父级，改变val的值，需要触发一个自定义事件
-						this.$emit('receive',item);
-				}
-			}
-		})
+      methods: {
+        selectValueHandel: function(item) {
+          // 在子组件中有交互
+          // 告知父级，改变val的值，需要触发一个自定义事件
+          this.$emit('receive', item);
+        }
+      }
+    })
 
-		var data = {
-			list1 : ['北京','杭州','南京','上海'],
-			list2 : ['2017-02-01','2017-02-02','2017-02-03','2017-02-04']
-		}
+    var data = {
+      list1: ['北京', '杭州', '南京', '上海'],
+      list2: ['2017-02-01', '2017-02-02', '2017-02-03', '2017-02-04']
+    }
 
-		 var select = new Vue({
-		 	el : '#app',
-			data : data
-		 })
-	</script>
+    var select = new Vue({
+      el: '#app',
+      data: data
+    })
+  </script>
 </body>
+
 </html>

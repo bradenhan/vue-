@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>仿select</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script type="text/javascript" src="../vue.js"></script>
+  <style media="screen">
+    .item {
+      float: left;
+      width: 480px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="props" class="clearfix">
+    <h3>自定义组件</h3>
+    <custom>
+        <!-- 渲染的数据是父组件中的数据 -->
+        {{message}}
+    </custom>
+  </div>
+  <script>
+
+    // 定制模版
+    Vue.component("custom", {
+      data () {
+        return {
+          message : "我是子组件的数据"
+        }
+      },
+      template : `
+        <div class="">
+            <!-- 渲染的数据是子组件中的数据 -->
+            {{message}}
+            <p>我是第一个提醒</p>
+            <slot></slot>
+        </div>
+      `,
+    });
+
+    var select = new Vue({
+      el: '#props',
+      data: {
+        message : "我是父组件的数据"
+      }
+    })
+  </script>
+</body>
+
+</html>
