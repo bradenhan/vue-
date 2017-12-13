@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>alert</title>
+  <link rel="stylesheet" type="text/css" href="./fontFace.css">
+  <style>
+    [class*=" m-icon-"],
+    [class^=m-icon-] {
+      font-family: element-icons !important;
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      vertical-align: baseline;
+      display: inline-block;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /*基本样式*/
+
+    .m-alert {
+      width: 100%;
+      padding: 8px 16px;
+      margin: 0;
+      box-sizing: border-box;
+      border-radius: 4px;
+      position: relative;
+      background-color: #fff;
+      overflow: hidden;
+      color: #fff;
+      display: table;
+      transition: opacity .2s;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .m-content {
+      display: table-cell;
+      padding: 0 8px;
+    }
+
+    .m-message {
+      font-size: 13px;
+      line-height: 18px;
+    }
+
+    /*不同状态样式*/
+
+    .m-alert-success {
+      background-color: #13ce66;
+    }
+
+    .m-alert-info {
+      background-color: #50bfff;
+    }
+
+    .m-alert-warning {
+      background-color: #f7ba2a;
+    }
+
+    .m-alert-error {
+      background-color: #ff4949;
+    }
+
+    /*关闭按钮样式*/
+
+    .m-closebtn {
+      font-size: 12px;
+      color: #fff;
+      opacity: 1;
+      top: 12px;
+      right: 15px;
+      position: absolute;
+      cursor: pointer;
+    }
+
+    .m-icon-close:before {
+      content: "\E60C";
+    }
+
+    /*小图标样式*/
+
+    .m-icon {
+      font-size: 16px;
+      width: 16px;
+      display: table-cell;
+      color: #fff;
+      vertical-align: middle;
+    }
+
+    .m-icon-success:before {
+      content: "\E609";
+    }
+
+    .m-icon-warning:before {
+      content: "\E615";
+    }
+
+    .m-icon-info:before {
+      content: "\E615";
+    }
+
+    .m-icon-error:before {
+      content: "\E60B";
+    }
+
+    /*自定义图标*/
+
+    .m-icon-message:before {
+      content: "\E618";
+    }
+
+    .m-icon-menu:before {
+      content: "\E617";
+    }
+
+    .m-icon-setting:before {
+      content: "\E61E";
+    }
+
+    #app {
+      width: 500px;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <m-alert type="info"></m-alert>
+    <m-alert
+      type="success"
+      title="已成功"
+      :closeable="false"
+      :showicon="true"
+    ></m-alert>
+    <m-alert type="error">
+      <i class="m-icon m-icon-menu" slot="iconTemp"></i>
+      <template islot="titleTemp">
+        <div slot="titleTemp">sss</div>
+        <div slot="titleTemp">sss</div>
+        <div slot="titleTemp">sss</div>
+      </template>
+    </m-alert>
+    <m-alert
+      type="warning"
+      style="background : #333"
+      :closeable="false"
+      @on-click = "onClickHandel"
+    >
+        <div slot="titleTemp">sss</div>
+    </m-alert>
+  </div>
+  <script>
+    /*
+				alert提醒框有四种状态：
+						info success error warning
+
+				设置的props：
+					type 提醒框类型 默认为info
+					title 提示信息 '这里有一个消息要提示'
+					closeable 是否禁用关闭 默认为true
+					showicon 是否显示图标 默认为fasle
+					style 设置提醒框样式 默认为{}
+
+				定制模板：
+					slot为iconTmp  定制icon模板
+					slot为titleTmp 定制提示信息结构
+
+				监控状态变化：
+					事件名close-click   点击关闭X触发
+
+			*/
+
+      Vue.component("m-alert",{
+        props : {
+          type : {
+            type : String,
+            default : "info"
+          },
+          title : {
+            type : String,
+            default : "这是一个消息"
+          },
+          closeable : {
+            type : Boolean,
+            default : true
+          },
+          showicon : {
+            type : Boolean,
+            default : false
+          },
+          style : String,
+        },
+        computed : {
+          classes (){
+            return `m-alert-${this.type}`;
+          },
+          iconClass (){
+            return `m-icon-${this.type}`;
+          }
+        },
+        template : `
+          <div class="m-alert" :class = "[classes]" style="style">
+              <slot name="iconTemp">
+                <i v-show="showicon" class="m-icon" :class = "[iconClass]"></i>
+              </slot>
+              <div class="m-content">
+                <slot name="titleTemp">
+                  <span class="m-message">{{title}}</span>
+                </slot>
+                <i class="m-closebtn m-icon-close" v-show="!closeable" @click="closeHandel"></i>
+              </div>
+            </div>
+        `,
+        methods : {
+          closeHandel (){
+            this.$emit('on-click');
+          }
+        }
+      });
+
+      new Vue({
+        el : "#app",
+        methods : {
+          onClickHandel (){
+            console.log(1)
+          }
+        }
+      })
+  </script>
+</body>
+
+</html>
