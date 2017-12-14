@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>动态组件</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+    </style>
+
+  <script src="./vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="button" value="切换到第一个组件" @click="tapHande(1)">
+    <input type="button" value="切换到第二个组件" @click="tapHande(2)">
+    <input type="button" value="切换到第三个组件" @click="tapHande(3)">
+
+    <keep-alive>
+        <component :is="current"></component>
+    </keep-alive>
+
+  </div>
+  <script>
+    /* 动态组件 */
+
+    var custorm1 = Vue.component('custorm1',{
+      template : `
+        <div @click="changeBgHandel">1</div>
+      `,
+      methods : {
+        changeBgHandel (e){
+          e.target.style.background = 'red';
+        }
+      }
+    });
+
+    var custorm2 = Vue.component('custorm2',{
+      template : `
+        <div>2</div>
+      `,
+    });
+
+    var custorm3 = Vue.component('custorm3',{
+      template : `
+        <div>3</div>
+      `,
+    });
+
+    new Vue({
+      el : '#app',
+      data : {
+        current : custorm1
+      },
+      methods : {
+        tapHande(index){
+          if(index === 1){
+            this.current = custorm1
+          }else if(index === 2){
+            this.current = custorm2
+          }else if(index === 3){
+            this.current = custorm3
+          }
+        },
+      }
+    });
+  </script>
+</body>
+
+</html>
