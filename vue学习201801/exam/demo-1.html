@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <style>
+  </style>
+  <script src="./vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{message}}</p>
+    <ul>
+      <li @click = 'ss(index)' v-for = "item,index in limitList">
+        {{item}}
+      </li>
+    </ul>
+  </div>
+  <script>
+    // 页面 = 数据+模板
+    // 指令
+    /*
+      v-for 循环列表
+        语法：v-for="值,下标 in 数组"
+      v-on：绑定事件，简写:@
+    */
+
+    // 需求：页面显示数组中小于7的
+
+    let message = 'hello miaov',
+        list = [1,2,3,4,6,7,8,9];
+
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        message: message,
+        list : list
+      },
+      computed : {
+        limitList (){
+          var newList = this.list.filter(item => item < 7)
+          return newList;
+        }
+      },
+      methods : { // 在模板中使用的函数，定义在这里
+        ss (index){
+          console.log(index);
+        }
+      }
+    }) 
+  </script>
+</body>
+
+</html>
