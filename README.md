@@ -9,7 +9,8 @@
 * [05.封装组件](./vue-组件开发/05.封装组件.md)
 
 ## vue学习
-* [](./vue学习201801/vue主要概念简介.md)
+* [vue主要概念简介](./vue学习201801/vue主要概念简介.md)
+* [vue-cli和vuex使用](./vue学习-201802/vue-cli和vuex使用.md)
 
 ## vue其他知识
 * [vue生命周期](./vue其他知识/vue生命周期.md)
