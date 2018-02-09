@@ -232,3 +232,7 @@ vue一整个的生命周期中会有很多钩子函数提供给我们在vue生�
 * updated : 如果对数据统一处理，在这里写上相应函数
 * beforeDestroy : 可以做一个确认停止事件的确认框
 * nextTick : 更新数据后立即操作dom
+
+### 参考链接
+- [理解vue的生命周期钩子](https://segmentfault.com/a/1190000010006604)
+- [Vue 实例中的生命周期钩子](https://segmentfault.com/a/1190000008771768)
